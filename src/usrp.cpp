@@ -10,6 +10,13 @@
 
 #include "usrp.h"
 
+// TODO: Update all functions to make sure they work with:
+//	 1) Newest Version of UHD Driver
+//       2) USRP X310, i.e. version inside of labs.
+
+// Changes Made:
+// 1 - Changed all boost::shared_ptr to std::shared_ptr
+
 namespace fun
 {
     /*!
@@ -21,8 +28,8 @@ namespace fun
         m_params(params)
     {
         // Instantiate the multi_usrp
-        m_usrp = uhd::usrp::multi_usrp::make(uhd::device_addr_t(m_params.device_addr));
-        m_device = m_usrp->get_device();
+        m_usrp = uhd::usrp::multi_usrp::make(uhd::device_addr_t(m_params.device_addr)); //Good
+        m_device = m_usrp->get_device(); //Good
 
         // Set the center frequency
         m_usrp->set_tx_freq(uhd::tune_request_t(m_params.freq));

@@ -14,7 +14,9 @@ int main()
     set_realtime_priority();
 
     usrp_params params = usrp_params();
+    params.device_addr = "addr=172.23.202.2";
     transmitter tx = transmitter(params);
+    params.device_addr = "addr=172.23.201.2";
     receiver rx = receiver(&callback, params);
 
     std::string s = "Hello World";
