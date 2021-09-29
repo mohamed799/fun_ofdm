@@ -28,6 +28,10 @@ list(APPEND test_transceiver_srcs
     simple_transceiver.cpp
 )
 
+list(APPEND test_transcoder_srcs
+    simple_transcoder.cpp
+)
+
 ########################################################################
 # Create executables
 ########################################################################
@@ -35,6 +39,7 @@ add_executable(sim         ${test_sim_srcs})
 add_executable(transmitter ${test_tx_srcs})
 add_executable(receiver    ${test_rx_srcs})
 add_executable(transceiver ${test_transceiver_srcs})
+add_executable(transcoder  ${test_transcoder_srcs})
 
 
 ########################################################################
@@ -44,4 +49,4 @@ target_link_libraries(sim         fun_ofdm)
 target_link_libraries(transmitter fun_ofdm)
 target_link_libraries(receiver    fun_ofdm)
 target_link_libraries(transceiver fun_ofdm)
-
+target_link_libraries(transcoder fun_ofdm)
