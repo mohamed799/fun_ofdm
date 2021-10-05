@@ -14,8 +14,8 @@ set(fun_ofdm_VERSION_MAJOR 1)
 set(fun_ofdm_VERSION_MINOR 1)
 set(fun_ofdm_VERSION_PATCH 0)
 
-#set(CMAKE_BUILD_TYPE "Debug")
-set(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_BUILD_TYPE "Debug")
+#set(CMAKE_BUILD_TYPE "Release")
 
 #select the release build type by default to get optimization flags
 if(NOT CMAKE_BUILD_TYPE)

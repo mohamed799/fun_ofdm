@@ -44,7 +44,13 @@ namespace fun
         m_usrp->set_rx_gain(m_params.rx_gain);
 
         // Set the RX antenna
-        //m_usrp->set_rx_antenna("RX2");
+        m_usrp->set_rx_antenna("RX2");
+	//std::vector antennas = m_usrp->get_rx_antennas(0);
+	//std::vector tx_antennas = m_usrp->get_tx_antennas(1);
+
+	//for(int i = 0; i < antennas.size(); i++) {
+		//std::cout << "RX antenna number " << antennas[i] << std::endl;
+	//}
 
         // Get the TX and RX stream handles
         m_tx_streamer = m_usrp->get_tx_stream(uhd::stream_args_t("fc64"));

@@ -19,7 +19,7 @@ namespace fun {
         m_callback(callback),
         m_rec_chain()
     {
-        sem_init(&m_pause, 0, 1); //Initial value is 1 so that the receiver_chain_loop() will begin executing immediately
+        sem_init(&m_pause, 0, 0); //Initial value is 1 so that the receiver_chain_loop() will begin executing immediately
         m_rec_thread = std::thread(&transceiver::receiver_chain_loop, this); //Initialize the main receiver thread
     }
 
@@ -30,7 +30,7 @@ namespace fun {
     void transceiver::send_frame(std::vector<unsigned char> payload, Rate phy_rate)
     {
         std::vector<std::complex<double> > samples = m_frame_builder.build_frame(payload, phy_rate);
-        m_usrp.send_burst_sync(samples);
+        m_usrp.send_burst(samples);
     }
 
 
@@ -48,6 +48,7 @@ namespace fun {
         {
             sem_wait(&m_pause); // Block if the receiver is paused
 
+	    std::cout << "Hi Transceiver!!!" << std::endl;
             m_usrp.get_samples(NUM_RX_SAMPLES, m_samples);
 
             std::vector<std::vector<unsigned char> > packets =

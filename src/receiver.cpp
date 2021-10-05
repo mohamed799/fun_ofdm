@@ -44,7 +44,7 @@ namespace fun
         while(1)
         {
             sem_wait(&m_pause); // Block if the receiver is paused
-
+	
             m_usrp.get_samples(NUM_RX_SAMPLES, m_samples);
 
             std::vector<std::vector<unsigned char> > packets =

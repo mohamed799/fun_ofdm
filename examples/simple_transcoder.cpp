@@ -19,33 +19,33 @@ int main()
     params.device_addr = "addr=172.23.202.2";
     //transmitter tx = transmitter(params);
 
+    params.device_addr = "addr=172.23.202.2";
+    transceiver tx_rx = transceiver(&callback, params);
+    //tx_rx.pause();
+
     params.device_addr = "addr=172.23.201.2";
     receiver rx = receiver(&callback, params);
 
-    params.device_addr = "addr=172.23.203.2";
-    transceiver tx_rx = transceiver(&callback, params);
-
     std::string s = "Hello World";
     cout << s << std::endl;
-    std::string message1 = "Received packets from relay device";
-    std::string message2 = "Received packets at final receiver";
 
     std::vector<unsigned char> data = std::vector<unsigned char>(12);
     memcpy(&data[0], &s[0], 12);
-    tx_rx.pause();
-    sleep(1);
+
+    //rx.pause();
+    //tx_rx.pause();
+    //sleep(1);
     tx_rx.send_frame(data);
     //rx.pause();
 
     while(1)
     {
-	tx_rx.pause();
-        sleep(4);
-        rx.pause();
+	//tx_rx.pause();
         //rx.pause();
-	cout << "Sending now!!!";
-        tx_rx.send_frame(data);
+        sleep(1);
+	rx.pause();
         cout << "Sending \"Hello World\" " << std::endl;
+        tx_rx.send_frame(data);
         rx.resume();
         //tx_rx.pause();
 
